@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>python spider之 BeautifulSoup4库 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="性能低于lxml，但是更加人性化，使用最简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python spider之 BeautifulSoup4库">
+<meta property="og:url" content="http://example.com/2020/09/11/python-5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="性能低于lxml，但是更加人性化，使用最简单">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-11T09:06:57.000Z">
+<meta property="article:modified_time" content="2020-09-20T12:13:56.742Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/11/python-5/" class="article-date">
+  <time datetime="2020-09-11T09:06:57.000Z" itemprop="datePublished">2020-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python spider之 BeautifulSoup4库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>性能低于lxml，但是更加人性化，使用最简单</p>
+<a id="more"></a>
+
+<h4 id="find-和find-all-方法"><a href="#find-和find-all-方法" class="headerlink" title="find()和find_all()方法"></a>find()和find_all()方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(html,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.获取所有tr标签</span></span><br><span class="line">trs = soup.find_all(<span class="string">&#x27;tr&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">    print(tr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.获取第二个tr标签</span></span><br><span class="line">tr = soup.find_all(<span class="string">&#x27;tr&#x27;</span>,limit=<span class="number">2</span>)[<span class="number">1</span>]</span><br><span class="line">print(tr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取所有class等于even的tr标签</span></span><br><span class="line"><span class="comment">#trs = soup.find_all(&#x27;tr&#x27;,class_=&#x27;even&#x27;)</span></span><br><span class="line">trs = soup.find_all(<span class="string">&#x27;tr&#x27;</span>,attrs=&#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;even&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">    print(tr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.所有id=test且class=test的a标签提取出来</span></span><br><span class="line">aList = soup.find_all(<span class="string">&#x27;a&#x27;</span>,id=<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;class&#x27;</span>=<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> aList:</span><br><span class="line">    print(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.获取所有a标签的href属性</span></span><br><span class="line">aList = soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> aList:</span><br><span class="line">    <span class="comment">#第一种</span></span><br><span class="line">    href = a[<span class="string">&#x27;href&#x27;</span>]</span><br><span class="line">    print(href)</span><br><span class="line">    <span class="comment">#第二种</span></span><br><span class="line">    <span class="comment">#href = a.attrs[&#x27;href&#x27;]</span></span><br><span class="line">    <span class="comment">#print(href)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.获取所有的职位信息（纯文本）</span></span><br><span class="line">trs = soup.find_all(<span class="string">&#x27;tr&#x27;</span>)[<span class="number">1</span>:]</span><br><span class="line">movies = []</span><br><span class="line"><span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">    movie = &#123;&#125;</span><br><span class="line">    <span class="comment">#下方替换的部分</span></span><br><span class="line">    tds =tr.find_all(<span class="string">&#x27;td&#x27;</span>)</span><br><span class="line">    title = tds[<span class="number">0</span>].string</span><br><span class="line">    category = tds[<span class="number">1</span>].string</span><br><span class="line">    nums = tds[<span class="number">2</span>].string</span><br><span class="line">    city = tds[<span class="number">3</span>].string</span><br><span class="line">    pubtime = tds[<span class="number">4</span>].string</span><br><span class="line">    movie[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">    movie[<span class="string">&#x27;category&#x27;</span>] = category</span><br><span class="line">    movie[<span class="string">&#x27;nums&#x27;</span>] = nums</span><br><span class="line">    movie[<span class="string">&#x27;city&#x27;</span>] = city</span><br><span class="line">    movie[<span class="string">&#x27;pubtime&#x27;</span>] = pubtime</span><br><span class="line">    movies.append(movie)</span><br><span class="line">print(movies)</span><br><span class="line">    <span class="comment">#也可以采用这样的方法</span></span><br><span class="line">    infos = list(tr.string)</span><br><span class="line">    <span class="comment">#infos = list(tr.stripped_strings)</span></span><br><span class="line">    <span class="comment">#movie[&#x27;title&#x27;] = infos[0]</span></span><br><span class="line">    <span class="comment">#movie[&#x27;category&#x27;] = infos[1]</span></span><br><span class="line">    <span class="comment">#movie[&#x27;nums&#x27;] = infos[2]</span></span><br><span class="line">    <span class="comment">#movie[&#x27;city&#x27;] = infos[3]</span></span><br><span class="line">    <span class="comment">#movie[&#x27;pubtime&#x27;] = infos[4]</span></span><br><span class="line">    <span class="comment">#movies.append(movie)</span></span><br><span class="line">    <span class="comment">#print(movies)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h4><h4 id="select方法"><a href="#select方法" class="headerlink" title="select方法"></a>select方法</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/11/python-5/" data-id="ckgdt3g9k000bg5vpgaj386ck" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/12/python-6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python spider之 微博热搜实战
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/11/python-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python spider之 实战1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP%E7%9B%B8%E5%85%B3/" rel="tag">PHP相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" rel="tag">一些工具的掌握</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" rel="tag">碎言碎语</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/PHP%E7%9B%B8%E5%85%B3/" style="font-size: 15px;">PHP相关</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" style="font-size: 10px;">一些工具的掌握</a> <a href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" style="font-size: 10px;">碎言碎语</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/17/2020tsctf-j/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/17/html-2/">html-2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/13/html-1/">HTML 预备知识及webstorm快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/python-6/">python spider之 微博热搜实战</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/python-5/">python spider之 BeautifulSoup4库</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
