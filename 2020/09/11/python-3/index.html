@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>python spider之 XPath | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="二、数据提取 XPath语法和IxmI模块什么是XPath?xpath (XML Path Language)是一门在XML和HTML文档中查找信息的语言,可用来在XML和HTML文档中对元素和属性进行遍历。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python spider之 XPath">
+<meta property="og:url" content="http://example.com/2020/09/11/python-3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="二、数据提取 XPath语法和IxmI模块什么是XPath?xpath (XML Path Language)是一门在XML和HTML文档中查找信息的语言,可用来在XML和HTML文档中对元素和属性进行遍历。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/otaEjnP89xvGg6Y.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/qbjJ6UcyAZKOefC.png">
+<meta property="og:image" content="https://i.loli.net/2020/09/11/PWrSD4Ruy1dtZq2.png">
+<meta property="article:published_time" content="2020-09-11T02:36:07.000Z">
+<meta property="article:modified_time" content="2020-09-20T12:13:19.010Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/11/otaEjnP89xvGg6Y.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/11/python-3/" class="article-date">
+  <time datetime="2020-09-11T02:36:07.000Z" itemprop="datePublished">2020-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python spider之 XPath
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>二、数据提取</strong></p>
+<p>XPath语法和IxmI模块<br>什么是XPath?<br>xpath (XML Path Language)是一门在XML和HTML文档中查找信息的语言,可用来在XML和HTML文档中对元素和属性进行遍历。</p>
+<a id="more"></a>
+
+<p>Xpath开发工具</p>
+<p>1.Chrome插件XPath Helper</p>
+<p>2.Firefox插件Try XPath</p>
+<h4 id="XPath基本语法"><a href="#XPath基本语法" class="headerlink" title="XPath基本语法"></a>XPath基本语法</h4><p><img src="https://i.loli.net/2020/09/11/otaEjnP89xvGg6Y.png" alt="otaEjnP89xvGg6Y"></p>
+<p><em>@应改为选取所有price节点的book属性</em></p>
+<p><img src="https://i.loli.net/2020/09/11/qbjJ6UcyAZKOefC.png" alt="qbjJ6UcyAZKOefC"></p>
+<p><img src="https://i.loli.net/2020/09/11/PWrSD4Ruy1dtZq2.png" alt="PWrSD4Ruy1dtZq2"></p>
+<p>多路</p>
+<p>逻辑</p>
+<h4 id="lxml库"><a href="#lxml库" class="headerlink" title="lxml库"></a>lxml库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml importetree</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">html code</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment">#生成一个对象</span></span><br><span class="line">htmlElement = etree.HTML(text)</span><br><span class="line"></span><br><span class="line">print(etree.tostring(htmlElement,encoding=<span class="string">&#x27;utf-8&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从文本导入</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span> <span class="title">text</span>():</span></span><br><span class="line">htmlElement = etree.HTML(text)</span><br><span class="line">print(etree.tostring (htmlElement, encoding-<span class="string">&#x27;utf-8&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="comment">#从文件导入</span></span><br><span class="line"><span class="comment">#默认使用XML解析器，不能处理有问题的标签</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span> <span class="title">file</span>():</span></span><br><span class="line">htmlElement = etree.parse(<span class="string">&quot;tencent.html&quot;</span>)</span><br><span class="line"><span class="keyword">print</span> (etree.tostring(htmlElement, encoding-<span class="string">&#x27;utf-8&#x27;</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#更换解析器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_lagou_file</span>() :</span></span><br><span class="line">parser = etree.HTMLParser(encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">htmlElement = etree.parse(<span class="string">&quot;lagou.html&quot;</span>,parser=parser)</span><br><span class="line"><span class="keyword">print</span> (etree.tostring (htmlElement, encoding-<span class="string">&#x27;utf-8&#x27;</span>) .decode( <span class="string">&#x27;utf-8&#x27;</span>) )</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">parse_ file()</span><br></pre></td></tr></table></figure>
+
+<h4 id="lxml和XPath结合使用"><a href="#lxml和XPath结合使用" class="headerlink" title="lxml和XPath结合使用"></a>lxml和XPath结合使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="comment"># 1.获取所有tr标签</span></span><br><span class="line"><span class="comment"># 2.获取第2个tz标签</span></span><br><span class="line"><span class="comment"># 3.获取所有class等于even的标签</span></span><br><span class="line"><span class="comment"># 4.获取所有a标签的href属性</span></span><br><span class="line"><span class="comment"># 5.获取所有的职位信息(纯文本)</span></span><br><span class="line">parser = etree.HTMLParser (encoding=<span class="string">&#x27;utf-8&#x27;</span> )</span><br><span class="line">html = etree.parse (<span class="string">&quot; tencent .html&quot;</span>,parser-parser)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.获取第2个tr标签</span></span><br><span class="line">tr = html.xpath(<span class="string">&quot;//tr[2]&quot;</span>) [<span class="number">0</span>]</span><br><span class="line">print(etree. tostring (tr, encoding=<span class="string">&#x27;utf-8&#x27;</span>) .decode (<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取所有class等于even的tr标签</span></span><br><span class="line">trs = html.xpath(<span class="string">&quot;//tr[@class=&#x27;even&#x27;] &quot;</span>)</span><br><span class="line"> <span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">print(etree. tostring(tr, encoding=<span class="string">&#x27;utf-8&#x27;</span>) . decode (<span class="string">&quot;utf-8&quot;</span>) )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.获取所有a标签的href属性</span></span><br><span class="line">aList - html . xpath(<span class="string">&quot;//a/@href&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> alist:</span><br><span class="line"><span class="keyword">print</span> (<span class="string">&quot;http://hr. tencent. com/&quot;</span>+a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.获取所有的职位信息(纯文本)</span></span><br><span class="line">trs = html.xpath(<span class="string">&quot;//tr[position()&gt;1]&quot;</span>)</span><br><span class="line">positions=[]</span><br><span class="line"><span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line"><span class="comment">#在某个标签下，再执行xpath函数，获取这个标签下的子孙元素</span></span><br><span class="line"><span class="comment">#那么应该在//之前加一个点，代表是在当前元素下获取</span></span><br><span class="line"> href = tr.xpath(<span class="string">&quot;.//a/@href&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> fullurl = <span class="string">&#x27;http: 1 /hr. tencent. com/&#x27;</span> + href</span><br><span class="line"> title = tr.xpath(<span class="string">&quot;./td[1]//text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> category = tr.xpath(<span class="string">&quot;./td[2]/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> nums = tr.xpath(<span class="string">&quot;./td[3]/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> address = tr.xpath(<span class="string">&quot;./td[4]/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> pubtime = tr.xpath(<span class="string">&quot;./td[5]/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"> position = &#123;</span><br><span class="line"><span class="string">&#x27;url&#x27;</span>: fullurl,</span><br><span class="line"><span class="string">&#x27;title&#x27;</span> :title,</span><br><span class="line"><span class="string">&#x27;category&#x27;</span> : category,</span><br><span class="line"><span class="string">&#x27;nums&#x27;</span> : nums ,</span><br><span class="line"><span class="string">&#x27;address&#x27;</span> : address,</span><br><span class="line"><span class="string">&#x27;pubtime&#x27;</span> : pubtime</span><br><span class="line"> &#125;</span><br><span class="line"> positions.append(position)</span><br><span class="line"><span class="keyword">print</span> positions</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lxml结合xpath注意事项:</span></span><br><span class="line"><span class="comment"># 1.使用xpath语法。 应该使用Element.xpath</span></span><br><span class="line">方法来执行xpath的选择。示例代码如下:</span><br><span class="line">trs = html.xpath(<span class="string">&quot;//tr[position()&gt;1]&quot;</span>)</span><br><span class="line">xpath函数返回来的永远是一个列表。</span><br><span class="line"><span class="comment"># 2.获取某个标签的属性:</span></span><br><span class="line">href = html.xpath(<span class="string">&quot;//a/@href&quot;</span>)</span><br><span class="line"><span class="comment">#获取a标签的href属性对应的值</span></span><br><span class="line"><span class="number">3.</span>获取文本，是通过xpath中的text()函数。示例代码如下:</span><br><span class="line">address = tr.xpath(<span class="string">&quot;./td[4]/text()&quot;</span>)[<span class="number">0</span>] </span><br><span class="line"><span class="number">4.</span>在某个标签下，再执行xpath函数， 获取这个标签下的子孙元素，那么应该在<span class="string">&#x27;/&#x27;</span>之前加一个点，代表是在当前元素下获取。示例代码如下:</span><br><span class="line">address = tr.xpath(<span class="string">&quot;./td[4]/text()&quot;</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/11/python-3/" data-id="ckgdt3g9h0008g5vph1ac2q54" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/11/python-4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python spider之 实战1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/10/python-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python spider之 requests库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP%E7%9B%B8%E5%85%B3/" rel="tag">PHP相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" rel="tag">一些工具的掌握</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" rel="tag">碎言碎语</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/PHP%E7%9B%B8%E5%85%B3/" style="font-size: 15px;">PHP相关</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" style="font-size: 10px;">一些工具的掌握</a> <a href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" style="font-size: 10px;">碎言碎语</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/17/html-2/">html-2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/13/html-1/">HTML 预备知识及webstorm快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/python-6/">python spider之 微博热搜实战</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/python-5/">python spider之 BeautifulSoup4库</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

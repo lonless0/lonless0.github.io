@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>python spider之 实战1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="豆瓣电影爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python spider之 实战1">
+<meta property="og:url" content="http://example.com/2020/09/11/python-4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="豆瓣电影爬虫">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-11T04:45:41.000Z">
+<meta property="article:modified_time" content="2020-09-20T12:13:41.753Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/11/python-4/" class="article-date">
+  <time datetime="2020-09-11T04:45:41.000Z" itemprop="datePublished">2020-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python spider之 实战1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="豆瓣电影爬虫"><a href="#豆瓣电影爬虫" class="headerlink" title="豆瓣电影爬虫"></a>豆瓣电影爬虫</h4><a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.将目标网站上的页面上抓取下来</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36&quot;</span></span><br><span class="line">    ,<span class="string">&#x27;Refer&#x27;</span>:<span class="string">&#x27;https://beijing.douban.com/&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://beijing.douban.com/&#x27;</span></span><br><span class="line">response = requests.get(url,headers=headers)</span><br><span class="line">text = response.text</span><br><span class="line">	<span class="comment">#删去文本中存在的换行符</span></span><br><span class="line">text = text.replace(<span class="string">&quot;\n&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.将抓取下来的网页根据一定的规则进行提取</span></span><br><span class="line">html=etree.HTML(text)</span><br><span class="line">	<span class="comment">#返回的是一个列表</span></span><br><span class="line">ul = html.xpath(<span class="string">&quot;//ul[@class=&#x27;events-list events-list-2col events-list-pic75&#x27;]//div[@class=&#x27;info&#x27;]/div/a/text()&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ul:</span><br><span class="line">  <span class="comment">#删除两端空格</span></span><br><span class="line">    print(i.strip())</span><br></pre></td></tr></table></figure>
+
+<h4 id="电影天堂爬虫"><a href="#电影天堂爬虫" class="headerlink" title="电影天堂爬虫"></a>电影天堂爬虫</h4><h5 id="爬取详情页"><a href="#爬取详情页" class="headerlink" title="爬取详情页"></a>爬取详情页</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url=<span class="string">&#x27;https://www.dytt5.net/dy/index.html&#x27;</span></span><br><span class="line">headers=&#123;</span><br><span class="line"><span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36&quot;</span></span><br><span class="line">    ,</span><br><span class="line">    <span class="string">&quot;Refer&quot;</span>:<span class="string">&quot;https://www.dytt5.net/dy/&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url,headers=headers)</span><br><span class="line">text = response.content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">html = etree.HTML(text)</span><br><span class="line"><span class="comment">#电影标题</span></span><br><span class="line">titles = html.xpath(<span class="string">&quot;//ul[@class=&#x27;fly-case-list&#x27;]/li/h3/a/text()&quot;</span>)</span><br><span class="line"><span class="comment">#详细页链接</span></span><br><span class="line">urls = html.xpath(<span class="string">&quot;//ul[@class=&#x27;fly-case-list&#x27;]/li/h3//a/@href&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> urls:</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> titles:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+
+<h5 id="爬虫完成"><a href="#爬虫完成" class="headerlink" title="爬虫完成"></a>爬虫完成</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span> <span class="title">detail</span> <span class="title">urls</span> (<span class="params">url</span>) :</span></span><br><span class="line">response = requests.get(url,headers = HEADERS)</span><br><span class="line"><span class="comment">#response.text</span></span><br><span class="line"><span class="comment"># response.content</span></span><br><span class="line"><span class="comment"># requests库，默认会使用自己猜测的编码方式将</span></span><br><span class="line"><span class="comment">#抓取下来的网页进行解码，然后存储到text属性上去</span></span><br><span class="line"><span class="comment">#在电影天堂的网页中,因为编码方式,requests库猜错了。所以就会产生乱码</span></span><br><span class="line">text = response . content . decode ( <span class="string">&#x27;utf-8&#x27;</span> )</span><br><span class="line">html = etree.HTML(text)</span><br><span class="line">detail_urls = html.xpath(<span class="string">&quot;//table[@class=&#x27; tbspan&#x27;]//a/@href&quot;</span>)</span><br><span class="line">detail_ urls = map(<span class="keyword">lambda</span> url:BASE_DOMAIN+url,detail_urls)</span><br><span class="line"><span class="keyword">return</span> detail_urls</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span> <span class="title">detail_</span> <span class="title">page</span> (<span class="params">url</span>) :</span></span><br><span class="line">movie =&#123;&#125;</span><br><span class="line">response = requests .get(url, headers= HEADERS)</span><br><span class="line">text = response.content.decode ( <span class="string">&#x27;utf-8&#x27;</span> )</span><br><span class="line">html = etree.HTML(text)</span><br><span class="line">title = htm1 .xpath(<span class="string">&quot;//div[@class=&#x27;title _all&#x27;]//font [@color&#x27; #07519a&#x27;]/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">movie[<span class="string">&#x27;title&#x27;</span>] = title</span><br><span class="line">zoomE = html . xpath(<span class="string">&quot;//div[@id=&#x27;Zoom&#x27;]&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">imgs = zoomE . xpath(<span class="string">&quot;.//img/@sra&quot;</span>)</span><br><span class="line">cover = imgs [<span class="number">0</span>]</span><br><span class="line">screenshot = imgs[<span class="number">1</span>]</span><br><span class="line">movie[<span class="string">&#x27;cover&#x27;</span>] = cover</span><br><span class="line">movie[<span class="string">&#x27;screenshot&#x27;</span>] = screenshot</span><br><span class="line">infos = zoomE . xpath(<span class="string">&quot;.//text() &quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, info <span class="keyword">in</span> enumerate(infos) :</span><br><span class="line"><span class="keyword">print</span> (info)</span><br><span class="line"><span class="keyword">print</span> (index)</span><br><span class="line">print(<span class="string">&#x27;=&#x27;</span>*<span class="number">30</span>)</span><br><span class="line"><span class="keyword">if</span> info.startswith (<span class="string">&quot;OE</span></span><br><span class="line"><span class="string">ft&quot;</span>) :</span><br><span class="line">info - parse_ info(info, <span class="string">&quot;&#x27;F</span></span><br><span class="line"><span class="string">ft&quot;</span>)</span><br><span class="line">movie[ <span class="string">&#x27;year&#x27;</span>] = info</span><br><span class="line"><span class="keyword">elif</span> info. startswith (<span class="string">&quot;OF</span></span><br><span class="line"><span class="string">J&quot;</span>) :</span><br><span class="line">info = parse_ info(info, <span class="string">&quot;F</span></span><br><span class="line"><span class="string">t&quot;</span>)</span><br><span class="line">movie [ <span class="string">&#x27; country&#x27;</span>] = info</span><br><span class="line"><span class="keyword">elif</span> info. startswith(<span class="string">&quot;O*</span></span><br><span class="line"><span class="string">別&quot;</span>) :</span><br><span class="line">info = parse_ info(info, <span class="string">&quot;#</span></span><br><span class="line"><span class="string">5l&quot;</span>)</span><br><span class="line">movie[ <span class="string">&#x27;category&#x27;</span>] - info</span><br><span class="line"><span class="keyword">elif</span> info. startswith (<span class="string">&quot;OEi&quot;</span>) :</span><br><span class="line">info = parse_ info (info, <span class="string">&quot;OTiF&quot;</span>)</span><br><span class="line">movie[ <span class="string">&#x27;douban rating&#x27;</span> ] - info</span><br><span class="line"><span class="keyword">elif</span> info.startswith(<span class="string">&quot;O H</span></span><br><span class="line"><span class="string">K&quot;</span>) :</span><br><span class="line">info = parse_ info(info, <span class="string">&quot;O 5</span></span><br><span class="line"><span class="string">K&quot;</span>)</span><br><span class="line">movie[ <span class="string">&#x27;duration&#x27;</span>] - info</span><br><span class="line"><span class="keyword">elif</span> info.startswith(<span class="string">&quot;O5</span></span><br><span class="line"><span class="string">&quot;</span>) :</span><br><span class="line">info = parse_ info(info, <span class="string">&quot;E</span></span><br><span class="line"><span class="string">&quot;</span>)</span><br><span class="line">actors = [info]</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range (index+<span class="number">1</span>, len(infos) ) :</span><br><span class="line">actor = infos[x] .strip ()</span><br><span class="line"><span class="keyword">if</span> actor. startswith(<span class="string">&quot;&quot;</span>) :</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">actors . append (actor )</span><br><span class="line">movie[ <span class="string">&quot; actors &#x27;] = actors</span></span><br><span class="line"><span class="string">elif info.startswith (&quot;</span>jồj</span><br><span class="line"><span class="number">1</span>↑<span class="string">&quot;) :</span></span><br><span class="line"><span class="string">info = parse_info(info,&quot;</span>îồj</span><br><span class="line"><span class="number">1</span><span class="string">&quot;)</span></span><br><span class="line"><span class="string">for x in ranqe (index+1,len(infos))</span></span><br><span class="line"><span class="string">#抄不动了。太多了，也比较复杂。还是进入下一阶段的学习吧。我们会有更好的解决办法。ps：出自P26，可能有时间有价值的话，可以继续看。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def spider() :</span></span><br><span class="line"><span class="string">base_ url = &quot;</span>http://dytt8.net/html /gndy/dyzz/list_23_().html <span class="string">&quot;</span></span><br><span class="line"><span class="string">#控制页数</span></span><br><span class="line"><span class="string">for x in range(1,8):</span></span><br><span class="line"><span class="string">	base_url.format(x)</span></span><br><span class="line"><span class="string">	detail_urls = get_detail_ urls(url)</span></span><br><span class="line"><span class="string">  #遍历一页中的所有详情url</span></span><br><span class="line"><span class="string">	for detail_url in detail urls:</span></span><br><span class="line"><span class="string">		movie = parse_detail_page(detail_url)</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">if __name__ = &#x27;__main__&#x27; :</span></span><br><span class="line"><span class="string">spider ()</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/11/python-4/" data-id="ckgdt3g9i0009g5vpet849slq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/11/python-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python spider之 BeautifulSoup4库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/11/python-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python spider之 XPath</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP%E7%9B%B8%E5%85%B3/" rel="tag">PHP相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" rel="tag">一些工具的掌握</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" rel="tag">碎言碎语</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/PHP%E7%9B%B8%E5%85%B3/" style="font-size: 15px;">PHP相关</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E6%8E%8C%E6%8F%A1/" style="font-size: 10px;">一些工具的掌握</a> <a href="/tags/%E7%A2%8E%E8%A8%80%E7%A2%8E%E8%AF%AD/" style="font-size: 10px;">碎言碎语</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/17/html-2/">html-2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/13/html-1/">HTML 预备知识及webstorm快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/python-6/">python spider之 微博热搜实战</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/python-5/">python spider之 BeautifulSoup4库</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
