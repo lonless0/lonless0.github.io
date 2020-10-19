@@ -20,11 +20,14 @@
 <meta property="og:image" content="https://i.loli.net/2020/10/17/A6UYJDayC3eHzt4.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/BQTDhyif5kCHv2Y.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/L1r4nDmgJFOMtls.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/ISEumGOc2kMR5yq.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/18/MkHzXgt53FLCnKm.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/d5fwsu4WFhjiV7q.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/sVwYB5ToQ92ALG1.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/xCsPYT7MZmIuWfG.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/ARUPYxw3qcVdbHj.png">
 <meta property="article:published_time" content="2020-10-17T15:13:54.069Z">
-<meta property="article:modified_time" content="2020-10-19T14:36:04.884Z">
+<meta property="article:modified_time" content="2020-10-19T14:42:30.078Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/18/IKZhio9fa23pQCL.png">
@@ -192,13 +195,13 @@
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="笑里藏刀"><a href="#笑里藏刀" class="headerlink" title="笑里藏刀"></a>笑里藏刀</h4><p>压缩文件，爆破就行了。最后是一个base64编码</p>
 <h4 id="隐写术知多少"><a href="#隐写术知多少" class="headerlink" title="隐写术知多少"></a>隐写术知多少</h4><p>每行都有一个数对，并且列坐标是连续的，因此直接推测这是以坐标的形式存储了一张图片。使用python脚本进行读取打印，发现一个少了两个定位符的二维码，补齐之后扫描，拿到flag<img src="https://i.loli.net/2020/10/17/L1r4nDmgJFOMtls.png" alt="截屏2020-10-15 下午3.48.57"></p>
 <p>脚本如下</p>
-<p>![截屏2020-10-15 下午3.46.07](/Users/liangxiaolong/myblog/post-images/截屏2020-10-15 下午3.46.07.png)</p>
+<p><img src="https://i.loli.net/2020/10/19/ISEumGOc2kMR5yq.png" alt="截屏2020-10-15 下午3.46.07"></p>
 <h4 id="See-ass-go"><a href="#See-ass-go" class="headerlink" title="See ass go"></a>See ass go</h4><p>二百多mb的文件，推测是视频。拖到kali中果然显示是视频文件。</p>
 <p>更改后缀为mov，mpeg</p>
 <p>Mpeg可以打开。打开后为一段csgo游戏视频。使用quicktimeplayer逐帧查看，发现在闪光弹帧存在一个二维码。扫描后拿到flag<img src="https://i.loli.net/2020/10/18/MkHzXgt53FLCnKm.png" alt="截屏2020-10-15 下午10.20.20"></p>
 <h4 id="俄罗斯套娃"><a href="#俄罗斯套娃" class="headerlink" title="俄罗斯套娃"></a>俄罗斯套娃</h4><p>先进行暴力破解，发现初始密码为0000，存在递增规律。因此生成四位数字典，使用extracton递回解压。</p>
 <p>刚开始可能会出现压缩包损坏，手动解压几次绕过去就可以了。</p>
-<h4 id="hide-amp-seek"><a href="#hide-amp-seek" class="headerlink" title="hide&amp;seek"></a>hide&amp;seek</h4><p>由Stegslove解析可知这既是一个png文件，也是一个doc文件。在winhex中搜索图片高度的十六进制，增大高度后可以拿到第一部分的flag，之后打开doc文件，取消隐藏文字。上半部分为佛曰密码，下半部分为社会主义核心价值观密码，解密后拿到第二部分flag![截屏2020-10-17 下午12.52.02](/Users/liangxiaolong/myblog/post-images/截屏2020-10-17 下午12.52.02.png)</p>
+<h4 id="hide-amp-seek"><a href="#hide-amp-seek" class="headerlink" title="hide&amp;seek"></a>hide&amp;seek</h4><p>由Stegslove解析可知这既是一个png文件，也是一个doc文件。在winhex中搜索图片高度的十六进制，增大高度后可以拿到第一部分的flag，之后打开doc文件，取消隐藏文字。上半部分为佛曰密码，下半部分为社会主义核心价值观密码，解密后拿到第二部分flag<img src="https://i.loli.net/2020/10/19/d5fwsu4WFhjiV7q.png" alt="截屏2020-10-17 下午12.52.02"></p>
 <h4 id="whoami"><a href="#whoami" class="headerlink" title="whoami"></a><img src="https://i.loli.net/2020/10/17/sVwYB5ToQ92ALG1.png" alt="截屏2020-10-15 下午7.17.33">whoami</h4><p>binwalk拿到压缩包，winhex打开，末尾为压缩包密码。得到一个JSFUCK编码，删除最后的一对括号，在控制台运行，得到乱序的flag。用15位栅栏密码得到flag</p>
 <h4 id="meizi-again"><a href="#meizi-again" class="headerlink" title="meizi-again"></a>meizi-again</h4><p>将mp4逐帧拆分，再利用montage合并为35x35的图片，组成一个迷宫</p>
 <p><img src="https://i.loli.net/2020/10/17/xCsPYT7MZmIuWfG.png" alt="截屏2020-10-17 下午5.58.19"></p>
@@ -211,7 +214,7 @@
 
 <h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="LordRiots-student"><a href="#LordRiots-student" class="headerlink" title="LordRiots student"></a>LordRiots student</h4><p>首先用yafu对进行质因数分解，之后的RSA很简单。</p>
 <h4 id="三十六天罡-72地煞"><a href="#三十六天罡-72地煞" class="headerlink" title="三十六天罡+72地煞"></a>三十六天罡+72地煞</h4><p>先将人名转换为在天罡地煞中的排名，之后每个排名都加72，对照ascii表得出flag</p>
-<h4 id="二重唱"><a href="#二重唱" class="headerlink" title="二重唱"></a>二重唱</h4><p>文本中混杂了摩斯电码和中文电码。摩斯电码缺少/，所以可以逐个比对。中文电码直接在网站翻译。揭秘后为一个求椭圆加密公钥的问题。利用软件直接得解。然后将x与y相加，拿到flag![截屏2020-10-16 下午7.00.48](/Users/liangxiaolong/myblog/post-images/截屏2020-10-16 下午7.00.48.png)</p>
+<h4 id="二重唱"><a href="#二重唱" class="headerlink" title="二重唱"></a>二重唱</h4><p>文本中混杂了摩斯电码和中文电码。摩斯电码缺少/，所以可以逐个比对。中文电码直接在网站翻译。揭秘后为一个求椭圆加密公钥的问题。利用软件直接得解。然后将x与y相加，拿到flag<img src="https://i.loli.net/2020/10/19/ARUPYxw3qcVdbHj.png" alt="截屏2020-10-16 下午7.00.48"></p>
 <h3 id="checkin"><a href="#checkin" class="headerlink" title="checkin"></a>checkin</h3><p>一个搜索歌词消磨这一生</p>
 <p>另一个关注天璇公众号</p>
 
