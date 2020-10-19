@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2020tsctf-j部分writeupWeb部分EasyF12第一步，删除disabled属性，可以解禁右标签的点击。进入下一层。 审计js代码，发现shuxing2()函数会刷新界面，而未被使用的shuxing()函数不会刷新界面 因此直接在控制台中进行命令for(var i &#x3D;0, I&lt;10000, i++) shuxing() 瞬间即可将数值刷到要求。 另外也可以采用设置cookie">
+  <meta name="description" content="2020tsctf-j部分writeupWeb部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/2020/10/17/2020tsctf-j/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="2020tsctf-j部分writeupWeb部分EasyF12第一步，删除disabled属性，可以解禁右标签的点击。进入下一层。 审计js代码，发现shuxing2()函数会刷新界面，而未被使用的shuxing()函数不会刷新界面 因此直接在控制台中进行命令for(var i &#x3D;0, I&lt;10000, i++) shuxing() 瞬间即可将数值刷到要求。 另外也可以采用设置cookie">
+<meta property="og:description" content="2020tsctf-j部分writeupWeb部分">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2020/10/18/IKZhio9fa23pQCL.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/rBxSvbZu6JyN4MY.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/10/17/sVwYB5ToQ92ALG1.png">
 <meta property="og:image" content="https://i.loli.net/2020/10/17/xCsPYT7MZmIuWfG.png">
 <meta property="article:published_time" content="2020-10-17T15:13:54.069Z">
-<meta property="article:modified_time" content="2020-10-18T03:46:45.788Z">
+<meta property="article:modified_time" content="2020-10-19T14:36:04.884Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/10/18/IKZhio9fa23pQCL.png">
@@ -168,7 +168,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="2020tsctf-j部分writeup"><a href="#2020tsctf-j部分writeup" class="headerlink" title="2020tsctf-j部分writeup"></a>2020tsctf-j部分writeup</h2><h3 id="Web部分"><a href="#Web部分" class="headerlink" title="Web部分"></a>Web部分</h3><h4 id="EasyF12"><a href="#EasyF12" class="headerlink" title="EasyF12"></a>EasyF12</h4><p>第一步，删除disabled属性，可以解禁右标签的点击。进入下一层。</p>
+        <h2 id="2020tsctf-j部分writeup"><a href="#2020tsctf-j部分writeup" class="headerlink" title="2020tsctf-j部分writeup"></a>2020tsctf-j部分writeup</h2><h3 id="Web部分"><a href="#Web部分" class="headerlink" title="Web部分"></a>Web部分</h3><a id="more"></a>
+
+<h4 id="EasyF12"><a href="#EasyF12" class="headerlink" title="EasyF12"></a>EasyF12</h4><p>第一步，删除disabled属性，可以解禁右标签的点击。进入下一层。</p>
 <p>审计js代码，发现shuxing2()函数会刷新界面，而未被使用的shuxing()函数不会刷新界面</p>
 <p>因此直接在控制台中进行命令for(var i =0, I&lt;10000, i++) shuxing()</p>
 <p>瞬间即可将数值刷到要求。</p>
